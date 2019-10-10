@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}标签列表{% end %}
+{% block body %}
+<div class="container" style="text-align: left">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3>标签列表 <span style="font-size: 10px;margin-left: 20px">共有{{ len(tags) }}个标签，以下是热门标签</span></h3>
+            {% for i in tag_list %}
+            <div id="tag-list-{{ i['tid'] }}" onclick="/tag/list" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ i['tag_name'] }}</h3>
+                </div>
+                <div class="panel-body">
+                    <b>问题数量：<span style="color: red">{{ i['question_count'] }}</span></b>
+                    <b style="margin-left: 24px">用户数量：<span style="color: red">{{ i['user_count'] }}</span></b>
+                </div>
+            </div>
+            {% end %}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ static_url('js/tag_list.js') }}"></script>
+{% end %}

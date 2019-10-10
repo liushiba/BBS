@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}用户列表{% end %}
+{% block body %}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6" style="text-align: left;">
+        <div>
+            <h3>用户赏金记录 ranks 50</h3>
+            {% if current_user %}
+            <b>
+                <span>当前用户： </span>
+                <span>{{ current_user['username'] }} </span>
+                <span>得分： </span>
+                <span>{{ current_user['point'] }} </span>
+                <span>排名： </span>
+                <span>{{ int(current_user['rank']) }}</span>
+            </b>
+            {% else %}
+            无法获取当前用户信息
+            {% end %}
+            <div class="form-group" style="float: right">
+                <input type="text" class="form-control" id="search-user" style="width: 300px" placeholder="查询用户" />
+            </div>
+        </div>
+        <div id="user-list" class="list-group" style="margin-top: 60px">
+            {% for i in user_list %}
+            {% if i['ranks'] <= 10 %}
+            <div class="list-group-item list-group-item-success">
+                <b style="color: red">{{ int(i['ranks']) }} </b>
+                <b style="margin-left: 20px;font-size: 20px">{{ i['username'] }}</b>
+                <b style="float: right"> <span style="color: red">{{ i['point'] }}</span> 金</b>
+            </div>
+            {% elif i['ranks'] <= 20 %}
+            <div class="list-group-item list-group-item-warning">
+                <b style="color: orange">{{ int(i['ranks']) }} </b>
+                <b style="margin-left: 20px;font-size: 20px">{{ i['username'] }}</b>
+                <b style="float: right"> <span style="color: red">{{ i['point'] }}</span> 金</b>
+            </div>
+            {% elif i['ranks'] <= 50 %}
+            <div class="list-group-item list-group-item-danger">
+                <b style="color: green">{{ int(i['ranks']) }} </b>
+                <b style="margin-left: 20px;font-size: 20px">{{ i['point'] }}</b>
+                <b style="float: right"> <span style="color: red">{{ i['point'] }}</span> 金</b>
+            </div>
+            {% end %}
+            {% end %}
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<script type="text/javascript" src="{{ static_url('js/user_list.js') }}"></script>
+{% end %}

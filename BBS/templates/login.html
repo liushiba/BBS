@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}登录{% end %}
+{% block body %}
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1>现在加入 <b>BBS问答社区</b></h1>
+                    <div class="description">
+                        <p>注册成为问答学院的用户， 您可以提问其他人或为他人解答。 知识的交易创造的价值无法估计！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <form role="form" action="" method="post" class="registration-form">
+                        <fieldset>
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>登录/注册</h3>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-username">用户名</label>
+                                    <input type="text" name="username" placeholder="用户名" class="form-control" id="form-username">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-password">密码</label>
+                                    <input type="password" name="password" placeholder="密码" class="form-control" id="form-password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label class="sr-only" for="form-vcode">验证码</label>
+                                            <input type="text" name="vcode" placeholder="验证码" class="form-control" id="form-vcode">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="loginVcode" src="" alt="刷新失败" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="submitLogin" type="button" class="btn btn-info">登录</button>
+                                <button id="submitSignup" type="button" class="btn btn-success">注册</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ static_url('js/login.js') }}"></script>
+{% end %}

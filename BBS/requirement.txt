@@ -1,0 +1,5 @@
+Tornado==5.0.2
+PyMySQL==0.8.1
+ipython==6.3.1
+Pillow==5.1.0
+Tornado-Redis==2.4.18

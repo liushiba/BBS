@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}首页{% end %}
+{% block body %}
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2" style="text-align: left">
+                    <div class="input-group" style="width: 600px">
+                        <h3 style="font-weight: 600">Questions!</h3>
+                        <div class="btn-group">
+                            <a href="/question/create" class="btn btn-primary" style="font-weight: 600">NEW</a>
+                        </div>
+                        <div style="margin-left: 12px" class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                按状态<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li id="newest"><a href="#">最新</a></li>
+                                <li id="hotest"><a href="#">最热</a></li>
+                                <li id="under"><a href="#">未解决</a></li>
+                                <li id="hasdone"><a href="#">已解决</a></li>
+                                <li id="prefer"><a href="#">我常看的</a></li>
+                            </ul>
+                        </div>
+                        <div style="margin-left: 12px" class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                按标签<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% for t in tags %}
+                                <li><a href="#" id="t_{{ t['tid'] }}" onclick="filterTag(this)">{{ t['tag_name'] }}</a></li>
+                                {% end %}
+                            </ul>
+                        </div>
+                        <a style="margin-left: 12px" id="refreshQ" href="#"><span class="glyphicon glyphicon-refresh"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px" class="list-group" id="question-list">
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <button style="float: left" id="preQuestions" class="btn btn-info">上一页</button>
+                    <button style="float: left" id="nextQuestions" class="btn btn-info">下一页</button>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input id="search" type="text" class="form-control" placeholder="看看别人是不是提问了你想知道的问题？">
+                        <span id="search-btn" class="input-group-btn">
+                            <button class="btn btn-success" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<script src="{{ static_url('js/question.js') }}"></script>
+{% end %}

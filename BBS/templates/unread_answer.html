@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}未读回复{% end %}
+{% block body %}
+<div class="row" style="text-align: left">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2>未读回复</h2>
+        <div style="margin-top: 35px" class="list-group">
+            {% for i in unread_questions %}
+            <a class="list-group-item" href="/question/detail/{{ i['qid'] }}"><b style="color: red;">{{ i['abstract'] }}</b><span class="span1 badge" style="float: right">{{ i['answer_count'] }} 条</span></a>
+            {% end %}
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% end %}

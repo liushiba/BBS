@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}查询结果{% end %}
+{% block body %}
+<div class="row " style="margin-top: 160px">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input id="result-search" type="text" class="form-control" placeholder="看看别人是不是提问了你想知道的问题？">
+            <span class="input-group-btn">
+                <button id="result-search-btn" class="btn btn-success" type="button">Go!</button>
+            </span>
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class="col-md-3"></div>
+</div><!-- /.row -->
+<div style="margin-top: 100px;text-align: left" class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h3>查询结果 <span class="glyphicon glyphicon-info-sign" style='font-size: 10px'>查询按照输入关键字是否在简述或者详情中出现</span></h3>
+        <div class="list-group">
+            {% if not result %}
+            {% if not msg %}
+            <div class="alert alert-danger">未查询到您要找的问题</div>
+            {% else %}
+            <div class="alert alert-danger">{{ msg }}</div>
+            {% end %}
+            {% else %}
+            {% for i in result %}
+            <a href="/question/detail/{{ i['qid'] }}" class="list-group-item list-group-item-success">{{ i['abstract'] }}</a>
+            {% end %}
+            {% end %}
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<script type="text/javascript" src="{{ static_url('js/question.js') }}"></script>
+{% end %}
